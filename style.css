@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container-general {
+  background-image: url('assets/stars.gif');
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container-SW {
+  color: #ffb13a;
+  width: 64%;
+  margin-inline: auto;
+  animation: haciaArriba 15s ease-in-out infinite;
+  display: none;
+  cursor: default;
+
+  * {
+    font-family: Helvetica, sans-serif;
+    pointer-events: none;
+    
+  }
+
+  h2,
+  h3 {
+    font-size: 5vw;
+    text-align: center;
+  }
+
+  p {
+    font-size: 3vw;
+    text-align: justify;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 5vw;
+  }
+}
+
+::selection {
+  color: lime;
+  background-color: black;
+}
+.pausar {
+  animation-play-state: paused !important;
+}
+
+.mostrar {
+  display: block;
+}
+
+@keyframes haciaArriba {
+  0% {
+    transform: perspective(100vh) rotateX(15deg) translateY(100%);
+  }
+
+  100% {
+    transform: perspective(100vh) rotateX(25deg) translateY(-200%);
+  }
+}
+
+@keyframes haciaArribaMovil {
+  0% {
+    transform: perspective(100vh) rotateX(15deg) translateY(200%);
+  }
+
+  100% {
+    transform: perspective(100vh) rotateX(25deg) translateY(-150%);
+  }
+}
+
+.myAside {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(9, max-content);
+  position: fixed;
+  left: .5rem;
+  height: 100vh;
+  border-radius: 999px;
+  background-color: transparent;
+  padding: .5rem;
+  align-content: space-evenly;
+
+  label {
+    padding: 1rem;
+    color: white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label:nth-child(even) {
+    box-shadow: inset 4px 4px 4px #fff4, inset -4px -4px 4px #fff4;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio]:checked+label {
+    background-image: url('assets/death-star.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+}
+
+
+@media (width <=1000px) and (orientation: landscape) {
+  html {
+    font-size: 9px;
+  }
+
+  .myAside {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, max-content);
+    place-content: start;
+    gap: .5rem;
+  }
+}
+
+@media (width <=600px) and (orientation: portrait) {
+
+  html {
+    font-size: 10px;
+  }
+
+  .myAside {
+    place-content: center;
+    row-gap: .7rem;
+  }
+
+  .container-SW {
+    animation: haciaArribaMovil 18s ease-in-out infinite;
+  }
+}
